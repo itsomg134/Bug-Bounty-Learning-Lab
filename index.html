@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Learning Lab</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .vuln-box { background: #ffe0e0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .safe-box { background: #e0ffe0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        input, button { padding: 8px; margin: 5px; }
+        pre { background: #f0f0f0; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1> Web Security Learning Lab (Educational Use Only)</h1>
+    <p>Learn about vulnerabilities safely — run this on localhost or authorized environment.</p>
+
+    <div class="vuln-box">
+        <h3> Simulated XSS Demo (Safe)</h3>
+        <p>Input: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> — This demo <strong>safely escapes</strong> output.</p>
+        <input type="text" id="xssInput" placeholder="Try &lt;script&gt;alert(1)&lt;/script&gt;">
+        <button onclick="showSafe()">Show Output</button>
+        <p>Output: <span id="xssOutput"></span></p>
+        <p><small> In a real vulnerable app this would execute. Here it's HTML-encoded for safe learning.</small></p>
+    </div>
+
+    <div class="safe-box">
+        <h3>Responsible Disclosure Steps</h3>
+        <ol>
+            <li>Identify vulnerability on an authorized program (HackerOne, Bugcrowd, etc.)</li>
+            <li>Document steps to reproduce</li>
+            <li>Report privately to the company via their security contact</li>
+            <li>Never exploit beyond proof of concept</li>
+            <li>Wait for disclosure timeline agreement</li>
+        </ol>
+    </div>
+
+    <div class="vuln-box">
+        <h3> Common Vulnerability Types (OWASP Top 10)</h3>
+        <ul>
+            <li>SQL Injection (SQLi)</li>
+            <li>Cross-Site Scripting (XSS)</li>
+            <li>Cross-Site Request Forgery (CSRF)</li>
+            <li>Server-Side Request Forgery (SSRF)</li>
+            <li>Broken Access Control</li>
+        </ul>
+        <p><strong>Practice legally:</strong> <a href="https://portswigger.net/web-security" target="_blank">PortSwigger Academy</a> | <a href="https://www.hackerone.com/" target="_blank">HackerOne</a></p>
+    </div>
+
+    <script>
+        function showSafe() {
+            let input = document.getElementById('xssInput').value;
+            // SAFE: Escape HTML to prevent any actual XSS
+            let escaped = input.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+            document.getElementById('xssOutput').innerHTML = escaped;
+        }
+    </script>
+
+    <footer>
+        <p> <strong>Important:</strong> Run this only on your own machine. Never test vulnerabilities on websites without written permission.</p>
+    </footer>
+</body>
+</html>
