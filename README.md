@@ -15,6 +15,8 @@
 -  Responsible Disclosure
 -  License
 
+<img width="1885" height="1121" alt="image" src="https://github.com/user-attachments/assets/f477768b-2184-4a54-a28d-bcff226f3e9b" />
+
 ##  About
 
 This repository serves as my personal lab and knowledge base for learning ethical hacking, web security, and bug bounty hunting. All examples and exercises are designed to be run in isolated, authorized environments such as local virtual machines or legal training platforms.
